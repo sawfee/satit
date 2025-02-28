@@ -637,13 +637,15 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">ชื่อบิดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['FIRSTNAME_F'] ?>"
+                            name="lname">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">นามสกุลบิดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>"
+                            name="LASTNAME_F">
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -651,10 +653,11 @@ if($Numrow == 0) {
                         <label class="form-label">สถานภาพบิดา</label>
                         <!-- <select id="single-select"> -->
                         <select class="default-select form-control">
-                            <option value="" disabled selected>กรุณาเลือก</option>                          
-                            <option value="1"<?php if(@$users["PROVINCE_SC"] == 1) { echo "selected";} ?>>มีชีวิต</option>
-                            <option value="0"<?php if(@$users["PROVINCE_SC"] == 1) { echo "selected";} ?>>ถึงแก่กรรม</option>
-                            <option value="9"<?php if(@$users["PROVINCE_SC"] == 1) { echo "selected";} ?>>ไม่ระบุ</option>
+                            <option value="" disabled selected>กรุณาเลือก</option>
+                            <option value="1" <?php if(@$users["F_STATUS"] == 1) { echo "selected";} ?>>มีชีวิต</option>
+                            <option value="0" <?php if(@$users["F_STATUS"] == 0) { echo "selected";} ?>>ถึงแก่กรรม
+                            </option>
+                            <option value="9" <?php if(@$users["F_STATUS"] == 9) { echo "selected";} ?>>ไม่ระบุ</option>
                         </select>
                     </div>
                 </div>
@@ -667,14 +670,14 @@ if($Numrow == 0) {
                             <?php
                                 foreach ($degree as $degrees) 
                                     {     
-                            ?>                          
+                            ?>
                             <option value="<?php echo @$degrees["ENTRYDEGREECODE"];?>"
-                                <?php if(@$degrees["ENTRYDEGREECODE"]==@$users["TUMBON_SC"]) { echo "selected";} ?>>
+                                <?php if(@$degrees["ENTRYDEGREECODE"]==@$users["STADY_F"]) { echo "selected";} ?>>
                                 <?php echo $degrees["ENTRYDEGREENAME"];?></option>
                             <?php
                                     }
                                 ?>
-                           
+
                         </select>
                     </div>
                 </div>
@@ -687,21 +690,21 @@ if($Numrow == 0) {
                             <?php
                                 foreach ($occup as $occups) 
                                     {     
-                            ?>                          
+                            ?>
                             <option value="<?php echo @$occups["OCCUP_ID"];?>"
-                                <?php if(@$occups["OCCUP_ID"]==@$users["TUMBON_SC"]) { echo "selected";} ?>>
+                                <?php if(@$occups["OCCUP_ID"]==@$users["JOB_F"]) { echo "selected";} ?>>
                                 <?php echo $occups["OCCUP_NAME"];?></option>
                             <?php
                                     }
                                 ?>
-                           
+
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">สถานที่ทำงาน</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['JOBNAME_F'] ?>" name="lname">
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -715,7 +718,7 @@ if($Numrow == 0) {
                                      {                                
                                     ?>
                             <option value="<?php echo @$provinces["PROVINCE_ID"];?>"
-                                <?php if(@$provinces["PROVINCE_ID"]==@$users["PROVINCE1"]) { echo "selected";} ?>>
+                                <?php if(@$provinces["PROVINCE_ID"]==@$users["PROVINCE_F"]) { echo "selected";} ?>>
                                 <?php echo @$provinces["PROVINCE_NAME_TH"];?></option>
                             <?php
                                         }
@@ -734,7 +737,7 @@ if($Numrow == 0) {
                                         {                                
                                     ?>
                             <option value="<?php echo @$districts["DISTRICT_ID"];?>"
-                                <?php if(@$districts["DISTRICT_ID"]==@$users["AMPOR1"]) { echo "selected";} ?>>
+                                <?php if(@$districts["DISTRICT_ID"]==@$users["DISTRICT_F"]) { echo "selected";} ?>>
                                 <?php echo @$districts["DISTRICT_NAME_TH"].'  '.@$districts["PROVINCE_NAME_TH"];?>
                             </option>
                             <?php
@@ -755,7 +758,7 @@ if($Numrow == 0) {
                                         $subdistrictname = @$subdistricts["SUB_DISTRICT_NAME_TH"].'  '.@$subdistricts["DISTRICT_NAME_TH"].'   '.@$objResultt["PROVINCE_NAME_TH"];                         
                                     ?>
                             <option value="<?php echo @$subdistricts["SUB_DISTRICT_ID"];?>"
-                                <?php if(@$subdistricts["SUB_DISTRICT_ID"]==@$users["TUMBON1"]) { echo "selected";} ?>>
+                                <?php if(@$subdistricts["SUB_DISTRICT_ID"]==@$users["SUB_DISTRICT_F"]) { echo "selected";} ?>>
                                 <?php echo $subdistrictname;?></option>
                             <?php
                                         }
@@ -769,7 +772,7 @@ if($Numrow == 0) {
     </div>
 </div>
 <div align="center">
-    <button type="button" class="btn btn-primary btn-update ">UPDATE</button>
+    <button type="button" class="btn btn-primary btn-update ">ปรับปรุงข้อมูล</button>
     <button type="button" class="btn btn-primary btn-back">ย้อนกลับ</button>
 </div>
 
