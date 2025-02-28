@@ -637,13 +637,15 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">ชื่อบิดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['FIRSTNAME_F'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['FIRSTNAME_F'] ?>"
+                            name="lname">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">นามสกุลบิดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="LASTNAME_F">
+                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>"
+                            name="LASTNAME_F">
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -651,10 +653,11 @@ if($Numrow == 0) {
                         <label class="form-label">สถานภาพบิดา</label>
                         <!-- <select id="single-select"> -->
                         <select class="default-select form-control">
-                            <option value="" disabled selected>กรุณาเลือก</option>                          
-                            <option value="1"<?php if(@$users["F_STATUS"] == 1) { echo "selected";} ?>>มีชีวิต</option>
-                            <option value="0"<?php if(@$users["F_STATUS"] == 0) { echo "selected";} ?>>ถึงแก่กรรม</option>
-                            <option value="9"<?php if(@$users["F_STATUS"] == 9) { echo "selected";} ?>>ไม่ระบุ</option>
+                            <option value="" disabled selected>กรุณาเลือก</option>
+                            <option value="1" <?php if(@$users["F_STATUS"] == 1) { echo "selected";} ?>>มีชีวิต</option>
+                            <option value="0" <?php if(@$users["F_STATUS"] == 0) { echo "selected";} ?>>ถึงแก่กรรม
+                            </option>
+                            <option value="9" <?php if(@$users["F_STATUS"] == 9) { echo "selected";} ?>>ไม่ระบุ</option>
                         </select>
                     </div>
                 </div>
@@ -667,14 +670,14 @@ if($Numrow == 0) {
                             <?php
                                 foreach ($degree as $degrees) 
                                     {     
-                            ?>                          
+                            ?>
                             <option value="<?php echo @$degrees["ENTRYDEGREECODE"];?>"
                                 <?php if(@$degrees["ENTRYDEGREECODE"]==@$users["STADY_F"]) { echo "selected";} ?>>
                                 <?php echo $degrees["ENTRYDEGREENAME"];?></option>
                             <?php
                                     }
                                 ?>
-                           
+
                         </select>
                     </div>
                 </div>
@@ -687,14 +690,14 @@ if($Numrow == 0) {
                             <?php
                                 foreach ($occup as $occups) 
                                     {     
-                            ?>                          
+                            ?>
                             <option value="<?php echo @$occups["OCCUP_ID"];?>"
                                 <?php if(@$occups["OCCUP_ID"]==@$users["JOB_F"]) { echo "selected";} ?>>
                                 <?php echo $occups["OCCUP_NAME"];?></option>
                             <?php
                                     }
                                 ?>
-                           
+
                         </select>
                     </div>
                 </div>
@@ -769,7 +772,7 @@ if($Numrow == 0) {
     </div>
 </div>
 <div align="center">
-    <button type="button" class="btn btn-primary btn-update ">UPDATE</button>
+    <button type="button" class="btn btn-primary btn-update ">ปรับปรุงข้อมูล</button>
     <button type="button" class="btn btn-primary btn-back">ย้อนกลับ</button>
 </div>
 
