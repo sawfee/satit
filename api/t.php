@@ -124,4 +124,19 @@ $OccupAapi = 'https://api-eduservice.yru.ac.th/api-fee/satit/ref-data/ref_occup.
         if(empty($occup)) {
             die('ไม่พบข้อมูลจาก APIa');
         }
+
+        $RevenuAapi = 'https://api-eduservice.yru.ac.th/api-fee/satit/ref-data/ref_revenu.php'; 
+        // ดึงข้อมูลจาก API
+        $revenudata = file_get_contents($RevenuAapi);
+        // ตรวจสอบว่าการดึงข้อมูลสำเร็จหรือไม่
+        if ($revenudata === FALSE) {
+            die('เกิดข้อผิดพลาดในการดึงข้อมูลจาก API');
+        }
+        // แปลงข้อมูล JSON ให้เป็น array
+        $revenu = json_decode($revenudata, true);
+
+        //ตรวจสอบว่ามีข้อมูลหรือไม่
+        if(empty($revenu)) {
+            die('ไม่พบข้อมูลจาก APIa');
+        }
 ?>
