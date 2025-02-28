@@ -637,13 +637,13 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">ชื่อบิดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['FIRSTNAME_F'] ?>" name="lname">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">นามสกุลบิดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="LASTNAME_F">
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -701,7 +701,7 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">สถานที่ทำงาน</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['JOBNAME_F'] ?>" name="lname">
                     </div>
                 </div>
                 <div class="col-sm-3">
