@@ -767,6 +767,27 @@ if($Numrow == 0) {
                     </div>
                 </div>
 
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">รายได้บิดา</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="default-select form-control">
+                            <option value="">กรุณาเลือก</option>
+                            <?php
+                                        foreach ($revenu as $revenus) 
+                                        {
+                                        
+                                    ?>
+                            <option value="<?php echo @$revenu["REVENUE_ID"];?>"
+                                <?php if(@$revenus["REVENUE_ID"]==@$users["SALARYFM"]) { echo "selected";} ?>>
+                                <?php echo @$revenus["REVENUE_NAME2"];?></option>
+                            <?php
+                                        }
+                                    ?>
+                        </select>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
