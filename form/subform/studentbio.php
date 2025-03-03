@@ -340,7 +340,7 @@ if($Numrow == 0) {
                 </div>
                 <div class="col-sm-4">
                     <div class="mb-3">
-                        <label class="form-label">ประวัติการแพ้อาหารทท</label>
+                        <label class="form-label">ประวัติการแพ้อาหาร</label>
                         <input type="text" class="form-control" name="food" value="<?php echo @$users["FOOD"];?>"
                             placeholder="ประวัติการแพ้อาหาร" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Tooltip on top">
