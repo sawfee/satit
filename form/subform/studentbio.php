@@ -278,7 +278,6 @@ if($Numrow == 0) {
                     </div>
                 </div>
 
-
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">กลุ่มเลือด</label>
@@ -302,7 +301,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">อายุ</label>
-                        <input type="number" class="form-control" name="tel" value="<?php echo $age->y?>"
+                        <input type="text" class="form-control" name="tel" value="<?php echo $age->y?>"
                             placeholder="123456789" data-bs-toggle="tooltip" data-bs-placement="top" title="อายุ"
                             readonly>
                     </div>
@@ -318,11 +317,36 @@ if($Numrow == 0) {
                 <div class="col-sm-4">
                     <div class="mb-3">
                         <label class="form-label" for="Email">Email address</label>
-                        <input type="text" class="form-control"
+                        <input type="email" class="form-control"
                             placeholder="<?php echo $users["STUDENTCODE"].'@yru.ac.th';?>"
                             value="<?php echo $users["STUDENTCODE"].'@yru.ac.th';?>" name="name">
                     </div>
                 </div>
+                <div class="col-sm-4">
+                    <div class="mb-3">
+                        <label class="form-label">โรคประจำตัว</label>
+                        <input type="text" class="form-control" name="rok" value="<?php echo @$users["ROK"];?>"
+                            placeholder="โรคประจำตัว" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Tooltip on top">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="mb-3">
+                        <label class="form-label">ประวัติการแพ้ยา</label>
+                        <input type="text" class="form-control" name="medicin" value="<?php echo @$users["MEDICIN"];?>"
+                            placeholder="ประวัติการแพ้ยา" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Tooltip on top">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="mb-3">
+                        <label class="form-label">ประวัติการแพ้อาหาร</label>
+                        <input type="text" class="form-control" name="food" value="<?php echo @$users["FOOD"];?>"
+                            placeholder="ประวัติการแพ้อาหาร" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Tooltip on top">
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
