@@ -17,7 +17,7 @@ include ("include/connectdb.php");
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta name="keywords"
+	<!-- <meta name="keywords"
 		content="PHP payment admin template, Bootstrap admin dashboard, payment system template, payment management UI, responsive admin template, PHP SaaS Admin Dashboard, Saas Dashboard Template, DexignZone, SSL Encryption, Mobile Optimization, e-commerce, UX/UI, Bootstrap 5, Admin Panel, HTML5, CSS3, Responsive Web App, User Interface Design, mobile commerce, dark layout, PWA (Progressive Web App), App Development, Product Showcase, Customizable, Modern Design, UI/UX Design">
 	<meta name="author" content="DexignZone">
 	<meta name="robots" content="index, follow">
@@ -34,7 +34,7 @@ include ("include/connectdb.php");
 	<meta name="twitter:description"
 		content="Discover Mophy, an advanced PHP payment admin dashboard crafted with Bootstrap for seamless payment management. This responsive and feature-rich admin panel simplifies payment processing, offering intuitive controls and insightful analytics. Empower your business with Mophy comprehensive tools and responsive design">
 	<meta name="twitter:image" content="https://mophy.dexignzone.com/php/social-image.png">
-	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:card" content="summary_large_image"> -->
 
 	<!-- MOBILE SPECIFIC -->
 
@@ -83,9 +83,12 @@ include ("include/connectdb.php");
         ***********************************-->
 		<div class="nav-header">
 			<a href="index.php" class="brand-logo">
-				<img class="logo-abbr" src="assets/images/logo.png" alt="">
-				<img class="logo-compact" src="assets/images/logo-text.png" alt="">
-				<img class="brand-title" src="assets/images/logo-text.png" alt="">
+				<img class="logo-abbr" src="assets/images/satit-logo.png" alt="">
+				<!-- <img class="logo-abbr" src="assets/images/logo.png" alt=""> -->
+				<!-- <img class="logo-compact" src="assets/images/logo-text.png" alt="">
+				<img class="brand-title" src="assets/images/logo-text.png" alt=""> -->
+				<img class="logo-compact" src="assets/images/admission.png" alt="">
+				<img class="brand-title" src="assets/images/admission.png" alt="">
 			</a>
 
 			<div class="nav-control">

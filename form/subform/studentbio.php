@@ -66,7 +66,7 @@ $age = $today->diff($dob);
 //echo "อายุ: " . $age->y . " ปี";
 if($Numrow == 0) {
 ?>
-
+<form class="profile-form" id="formdata">
 <div class="filter cm-content-box box-primary">
     <div class="content-title SlideToolHeader1">
         <div class="cpa">
@@ -90,7 +90,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">คำนำหน้า</label>
-                        <select class="default-select form-control" disabled id="prefix" name="prefix">
+                        <select class="default-select form-control" disabled id="prefix" name="PREFIX">
                             <option data-display="Select">กรุณาเลือก</option>
                             <option value="5" <?php if($users['PREFIXID']=='5'){ echo 'selected'; }?>>
                                 เด็กชาย</option>
@@ -120,7 +120,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label" for="Specialty">เลขบัตรประขาขน</label>
-                        <input type="number" class="form-control" value="<?php echo @$users['CITIZENID'];?>"
+                        <input type="number" class="form-control" name = "CITIZENID" value="<?php echo @$users['CITIZENID'];?>"
                             id="citizenid">
                     </div>
                 </div>
@@ -129,7 +129,7 @@ if($Numrow == 0) {
                         <label class="form-label" for="datepicker">วันเกิด
                             <?php echo '  '.@$users['BD_THAI']?></label>
                         <div class="input-hasicon mb-xl-0 mb-3">
-                            <input type="date" class="form-control " name="birthdate" id="birthdate"
+                            <input type="date" class="form-control " name="BIRTHDAY" id="birthdate"
                                 value="<?php echo @$users["BIRTHDAY"]?>"
                                 title="กรุณาตรวจสอบข้อมูลให้ถูกต้อง (รูปแบบวันที่ เดือน/วัน/ปี ค.ศ.)"
                                 data-toggle="tooltip" data-placement="top" />
@@ -142,7 +142,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">เพศ</label>
-                        <select class="default-select form-control" name="sex">
+                        <select class="default-select form-control" name="STUDENTSEX">
                             <option value="">กรุณาเลือก</option>
                             <option value="M" <?php if($users['STUDENTSEX']=='M'){ echo 'selected'; }?>>ชาย
                             </option>
@@ -155,7 +155,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">เชิ้อชาติ</label>
-                        <select id="single-select">
+                        <select id="single-select" name = "RACE/">
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <?php
                                      foreach ($races as $race) 
@@ -173,7 +173,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">สัญชาติ</label>
-                        <select id="single1-select">
+                        <select id="single1-select" name="NATION">
                             <!-- <select class="default-select form-control" name="sex" > -->
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <?php
@@ -192,7 +192,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">ศาสนา</label>
-                        <select class="default-select form-control" name="sex">
+                        <select class="default-select form-control" name="RELEGION">
                             <option value="">กรุณาเลือก</option>
                             <option value="1" <?php if($users['RELEGION']=='1'){ echo 'selected'; }?>>พุทธ
                             </option>
@@ -215,14 +215,14 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">ชื่อโรงพยาบาลที่เกิด</label>
-                        <input type="text" class="form-control" value="<?php echo $users['HOSPITAL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['HOSPITAL'] ?>" name="HOSPITAL">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">จังหวัด</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="PROVINCE_ID_B">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                      foreach ($province as $provinces) 
@@ -241,7 +241,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อำเภอ</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="DISTRICT_ID_B">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($district as $districts) 
@@ -261,7 +261,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">ตำบล</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="SUB_DISTRICT_ID_B">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($subdistrict as $subdistricts) 
@@ -281,7 +281,7 @@ if($Numrow == 0) {
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">กลุ่มเลือด</label>
-                        <select class="default-select form-control" name="sex">
+                        <select class="default-select form-control" name="BLOOD">
                             <option value="" selected disabled>- เลือกหมู่เลือด -</option>
                             <option value="A" <?php if($users['BLOOD'] == 'A'){echo "SELECTED";}?>>A</option>
                             <option value="B" <?php if($users['BLOOD'] == 'B'){echo "SELECTED";}?>>B</option>
@@ -302,14 +302,14 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อายุ</label>
                         <input type="text" class="form-control" name="tel" value="<?php echo $age->y?>"
-                            placeholder="123456789" data-bs-toggle="tooltip" data-bs-placement="top" title="อายุ"
+                            placeholder="อายุ" data-bs-toggle="tooltip" data-bs-placement="top" title="อายุ"
                             readonly>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="mb-3">
                         <label class="form-label">โทรศัพท์</label>
-                        <input type="number" class="form-control" name="tel" value="<?php echo @$users["TEL1"];?>"
+                        <input type="number" class="form-control" name="TEL1" value="<?php echo @$users["TEL1"];?>"
                             placeholder="123456789" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Tooltip on top">
                     </div>
@@ -325,7 +325,7 @@ if($Numrow == 0) {
                 <div class="col-sm-4">
                     <div class="mb-3">
                         <label class="form-label">โรคประจำตัว</label>
-                        <input type="text" class="form-control" name="rok" value="<?php echo @$users["ROK"];?>"
+                        <input type="text" class="form-control" name="ROK" value="<?php echo @$users["ROK"];?>"
                             placeholder="โรคประจำตัว" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Tooltip on top">
                     </div>
@@ -333,7 +333,7 @@ if($Numrow == 0) {
                 <div class="col-sm-4">
                     <div class="mb-3">
                         <label class="form-label">ประวัติการแพ้ยา</label>
-                        <input type="text" class="form-control" name="medicin" value="<?php echo @$users["MEDICIN"];?>"
+                        <input type="text" class="form-control" name="MEDICIN" value="<?php echo @$users["MEDICIN"];?>"
                             placeholder="ประวัติการแพ้ยา" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Tooltip on top">
                     </div>
@@ -341,7 +341,7 @@ if($Numrow == 0) {
                 <div class="col-sm-4">
                     <div class="mb-3">
                         <label class="form-label">ประวัติการแพ้อาหาร</label>
-                        <input type="text" class="form-control" name="food" value="<?php echo @$users["FOOD"];?>"
+                        <input type="text" class="form-control" name="FOOD" value="<?php echo @$users["FOOD"];?>"
                             placeholder="ประวัติการแพ้อาหาร" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Tooltip on top">
                     </div>
@@ -368,14 +368,14 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">ชื่อโรงเรียนเดิม (ถ้ามี)</label>
-                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['SCHOOL'] ?>" name="SCHOOL">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">จังหวัด</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="PROVINCE_SC">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                      foreach ($province as $provinces) 
@@ -394,7 +394,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อำเภอ</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="AMPOR_SC">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($district as $districts) 
@@ -414,7 +414,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">ตำบล</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="TUMBON_SC">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($subdistrict as $subdistricts) 
@@ -452,28 +452,28 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">ที่อยู่เลขที่</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['NOADD1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['NOADD1'] ?>" name="NOADD1"
                             id="stdcode">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">หมู่</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['MOO1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['MOO1'] ?>" name="MOO1"
                             id="stdcode">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">ซอย</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['SOI1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['SOI1'] ?>" name="SOI1"
                             id="stdcode">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">ถนน</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['STREET1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['STREET1'] ?>" name="STREET1"
                             id="stdcode">
                     </div>
                 </div>
@@ -481,7 +481,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">จังหวัด</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name = "PROVINCE1">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                      foreach ($province as $provinces) 
@@ -500,7 +500,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อำเภอ</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name = "AMPOR1">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($district as $districts) 
@@ -520,7 +520,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">ตำบล</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name = "TUMBON1">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($subdistrict as $subdistricts) 
@@ -539,7 +539,7 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">รหัสไปรษณีย์</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['ZIPCODE1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['ZIPCODE1'] ?>" name="ZIPCODE1"
                             id="stdcode">
                     </div>
                 </div>
@@ -549,43 +549,42 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">ที่อยู่เลขที่</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['NOADD1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['NOADD2'] ?>" name="NOADD2"
                             id="stdcode">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">หมู่</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['MOO1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['MOO2'] ?>" name="MOO2"
                             id="stdcode">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">ซอย</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['SOI1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['SOI2'] ?>" name="SOI2"
                             id="stdcode">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">ถนน</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['STREET1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['STREET2'] ?>" name="STREET2"
                             id="stdcode">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">จังหวัด</label>
-                        <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name = "PROVINCE2">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                      foreach ($province as $provinces) 
                                      {                                
                                     ?>
                             <option value="<?php echo @$provinces["PROVINCE_ID"];?>"
-                                <?php if(@$provinces["PROVINCE_ID"]==@$users["PROVINCE1"]) { echo "selected";} ?>>
+                                <?php if(@$provinces["PROVINCE_ID"]==@$users["PROVINCE2"]) { echo "selected";} ?>>
                                 <?php echo @$provinces["PROVINCE_NAME_TH"];?></option>
                             <?php
                                         }
@@ -596,15 +595,14 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">อำเภอ</label>
-                        <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name = "AMPOR2">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($district as $districts) 
                                         {                                
                                     ?>
                             <option value="<?php echo @$districts["DISTRICT_ID"];?>"
-                                <?php if(@$districts["DISTRICT_ID"]==@$users["AMPOR1"]) { echo "selected";} ?>>
+                                <?php if(@$districts["DISTRICT_ID"]==@$users["AMPOR2"]) { echo "selected";} ?>>
                                 <?php echo @$districts["DISTRICT_NAME_TH"].'  '.@$districts["PROVINCE_NAME_TH"];?>
                             </option>
                             <?php
@@ -617,7 +615,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">ตำบล</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name = "TUMBON2">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($subdistrict as $subdistricts) 
@@ -625,7 +623,7 @@ if($Numrow == 0) {
                                         $subdistrictname = @$subdistricts["SUB_DISTRICT_NAME_TH"].'  '.@$subdistricts["DISTRICT_NAME_TH"].'   '.@$objResultt["PROVINCE_NAME_TH"];                         
                                     ?>
                             <option value="<?php echo @$subdistricts["SUB_DISTRICT_ID"];?>"
-                                <?php if(@$subdistricts["SUB_DISTRICT_ID"]==@$users["TUMBON1"]) { echo "selected";} ?>>
+                                <?php if(@$subdistricts["SUB_DISTRICT_ID"]==@$users["TUMBON2"]) { echo "selected";} ?>>
                                 <?php echo $subdistrictname;?></option>
                             <?php
                                         }
@@ -636,7 +634,7 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label" for="Name">รหัสไปรษณีย์</label>
-                        <input type="text" class="form-control" value="<?php echo @$users['ZIPCODE1'] ?>" name="stdcode"
+                        <input type="text" class="form-control" value="<?php echo @$users['ZIPCODE2'] ?>" name="ZIPCODE2"
                             id="stdcode">
                     </div>
                 </div>
@@ -676,7 +674,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">สถานภาพบิดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="F_STATUS">
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <option value="1" <?php if(@$users["F_STATUS"] == 1) { echo "selected";} ?>>มีชีวิต</option>
                             <option value="0" <?php if(@$users["F_STATUS"] == 0) { echo "selected";} ?>>ถึงแก่กรรม
@@ -689,7 +687,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">การศึกษาบิดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="STADY_F">
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <?php
                                 foreach ($degree as $degrees) 
@@ -709,7 +707,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อาชีพของบิดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="JOB_F">
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <?php
                                 foreach ($occup as $occups) 
@@ -728,14 +726,14 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">สถานที่ทำงาน</label>
-                        <input type="text" class="form-control" value="<?php echo $users['JOBNAME_F'] ?>" name="lname">
+                        <input type="text" class="form-control" value="<?php echo $users['JOBNAME_F'] ?>" name="JOBNAME_F">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">จังหวัด</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="PROVINCE_F">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                      foreach ($province as $provinces) 
@@ -754,7 +752,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อำเภอ</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="DISTRICT_F">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($district as $districts) 
@@ -774,7 +772,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">ตำบล</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="SUB_DISTRICT_F">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($subdistrict as $subdistricts) 
@@ -795,7 +793,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">รายได้บิดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="SALARYFM">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($revenu as $revenus) 
@@ -814,7 +812,7 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">เบอร์โทรติดต่อบิดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['TEL_F'] ?>"
+                        <input type="text" name="TEL_F" class="form-control" value="<?php echo $users['TEL_F'] ?>"
                             name="TEL_F">
                     </div>
                 </div>
@@ -822,14 +820,14 @@ if($Numrow == 0) {
                     <div class="mb-3">
                     
                         <label class="form-label text-danger">กรณีบิดาเป็นบุคลากร มรย.</label>
-                        <input type="text" class="form-control" value="<?php echo $users['PF'] ?>"
+                        <input type="text" class="form-control" name="PF" value="<?php echo $users['PF'] ?>"
                             name="LASTNAME_F" placeholder="หน่วยงาน/สังกัด">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label text-danger">กรณีบิดาเป็นบุคลากร มรย.</label>
-                        <input type="text" class="form-control" value="<?php echo $users['ID_PF'] ?>"
+                        <input type="text" class="form-control" name="ID_PF" value="<?php echo $users['ID_PF'] ?>"
                             name="LASTNAME_F" placeholder="รหัสบุคลากร">
                     </div>
                 </div>
@@ -840,14 +838,14 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">ชื่อมารดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['FIRSTNAME_M'] ?>"
+                        <input type="text" class="form-control" name="FIRSTNAME_M" value="<?php echo $users['FIRSTNAME_M'] ?>"
                             name="lname">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">นามสกุลมารดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['LASTNAME_M'] ?>"
+                        <input type="text" class="form-control" name="LASTNAME_M" value="<?php echo $users['LASTNAME_M'] ?>"
                             name="LASTNAME_">
                     </div>
                 </div>
@@ -855,7 +853,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">สถานภาพมารดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="M_STATUS">
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <option value="1" <?php if(@$users["M_STATUS"] == 1) { echo "selected";} ?>>มีชีวิต</option>
                             <option value="0" <?php if(@$users["M_STATUS"] == 0) { echo "selected";} ?>>ถึงแก่กรรม
@@ -868,7 +866,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">การศึกษามารดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="STADY_M">
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <?php
                                 foreach ($degree as $degrees) 
@@ -888,7 +886,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อาชีพของมารดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="JOB_M">
                             <option value="" disabled selected>กรุณาเลือก</option>
                             <?php
                                 foreach ($occup as $occups) 
@@ -907,14 +905,14 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">สถานที่ทำงาน</label>
-                        <input type="text" class="form-control" value="<?php echo $users['JOBNAME_M'] ?>" name="lname">
+                        <input type="text" class="form-control" name="JOBNAME_M" value="<?php echo $users['JOBNAME_M'] ?>" name="lname">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label class="form-label">จังหวัด</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="PROVINCE_M">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                      foreach ($province as $provinces) 
@@ -933,7 +931,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">อำเภอ</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="DISTRICT_M">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($district as $districts) 
@@ -953,7 +951,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">ตำบล</label>
                         <!-- <select id="single-select"> -->
-                        <select class="minimum-search-length">
+                        <select class="minimum-search-length" name="SUB_DISTRICT_M">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($subdistrict as $subdistricts) 
@@ -974,7 +972,7 @@ if($Numrow == 0) {
                     <div class="mb-3">
                         <label class="form-label">รายได้มารดา</label>
                         <!-- <select id="single-select"> -->
-                        <select class="default-select form-control">
+                        <select class="default-select form-control" name="SALARYMM">
                             <option value="">กรุณาเลือก</option>
                             <?php
                                         foreach ($revenu as $revenus) 
@@ -993,7 +991,7 @@ if($Numrow == 0) {
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label">เบอร์โทรติดต่อมารดา</label>
-                        <input type="text" class="form-control" value="<?php echo $users['TEL_M'] ?>"
+                        <input type="text" class="form-control" name="TEL_M" value="<?php echo $users['TEL_M'] ?>"
                             name="TEL_M">
                     </div>
                 </div>
@@ -1001,14 +999,14 @@ if($Numrow == 0) {
                     <div class="mb-3">
                     
                         <label class="form-label text-danger">กรณีมารดาเป็นบุคลากร มรย.</label>
-                        <input type="text" class="form-control" value="<?php echo $users['PM'] ?>"
+                        <input type="text" class="form-control" name="PM" value="<?php echo $users['PM'] ?>"
                             name="LASTNAME_F" placeholder="หน่วยงาน/สังกัด">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="mb-3">
                         <label class="form-label text-danger">กรณีมารดาเป็นบุคลากร มรย.</label>
-                        <input type="text" class="form-control" value="<?php echo $users['ID_PM'] ?>"
+                        <input type="text" class="form-control" name="ID_PM" value="<?php echo $users['ID_PM'] ?>"
                             name="LASTNAME_F" placeholder="รหัสบุคลากร">
                     </div>
                 </div>
@@ -1017,13 +1015,299 @@ if($Numrow == 0) {
         </div>
     </div>
 </div>
+<div class="filter cm-content-box box-primary">
+    <div class="content-title SlideToolHeader1">
+        <div class="cpa">
+            <h4 class="card-title">ข้อมูลผู้ปกครอง (กรณีนักเรียนไม่ได้อยู่กับบิดา/มารดา)</h4>
+        </div>
+        <div class="tools">
+            <a href="javascript:void(0);" class="expand handle"><i class="fal fa-angle-down"></i></a>
+        </div>
+    </div>
+    <div class="cm-content-body form excerpt">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">ชื่อผู้ปกครอง</label>
+                        <input type="text" class="form-control" name="FIRSTNAME_P" value="<?php echo $users['FIRSTNAME_P'] ?>"
+                            name="lname">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">นามสกุลผู้ปกครอง</label>
+                        <input type="text" class="form-control" name="LASTNAME_P" value="<?php echo $users['LASTNAME_P'] ?>"
+                            name="LASTNAME_F">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">เชิ้อชาติ</label>
+                        <select class="minimum-search-length" name = "RACEID_P">
+                            <option value="">กรุณาเลือก</option>
+                            <?php
+                                        foreach ($races as $race) 
+                                        {                              
+                                    ?>
+                            <option value="<?php echo $race['RACE_ID'];?>"
+                                <?php if($race['RACE_ID']==$users['RACEID_P']){ echo 'selected'; }?>>
+                                <?php echo $race['RACE_NAME'];?></option>
+                            <?php
+                                        }
+                                    ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">สัญชาติ</label>
+                        <select class="minimum-search-length" name = "NATIONID_P">
+                            <option value="">กรุณาเลือก</option>
+                            <?php
+                                        foreach ($nations as $nation) 
+                                        {                              
+                                    ?>
+                           <option value="<?php echo $nation['NATION_ID'];?>"
+                                <?php if($nation['NATION_ID']==$users['NATIONID_P']){ echo 'selected'; }?>>
+                                <?php echo $nation['NATION_NAME_ENG'];?></option>
+                            <?php
+                                        }
+                                    ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">ศาสนา</label>
+                        <select class="default-select form-control" name="RELIGIONID_P">
+                            <option value="">กรุณาเลือก</option>
+                            <option value="1" <?php if($users['RELIGIONID_P']=='1'){ echo 'selected'; }?>>พุทธ
+                            </option>
+                            <option value="2" <?php if($users['RELIGIONID_P']=='2'){ echo 'selected'; }?>>อิสลาม
+                            </option>
+                            <option value="3" <?php if($users['RELIGIONID_P']=='3'){ echo 'selected'; }?>>คริสต์
+                            </option>
+                            <option value="4" <?php if($users['RELIGIONID_P']=='4'){ echo 'selected'; }?>>ซิกข์
+                            </option>
+                            <option value="6" <?php if($users['RELIGIONID_P']=='6'){ echo 'selected'; }?>>ฮินดู
+                            </option>
+                            <option value="5" <?php if($users['RELIGIONID_P']=='5'){ echo 'selected'; }?>>อื่นๆ
+                            </option>
+                            <option value="99" <?php if($users['RELIGIONID_P']=='99'){ echo 'selected'; }?>>ไม่ระบุ
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">สถานภาพผู้ปกครอง</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="default-select form-control" name="P_STATUS">
+                            <option value="" disabled selected>กรุณาเลือก</option>
+                            <option value="1" <?php if(@$users["P_STATUS"] == 1) { echo "selected";} ?>>มีชีวิต</option>
+                            <option value="0" <?php if(@$users["P_STATUS"] == 0) { echo "selected";} ?>>ถึงแก่กรรม
+                            </option>
+                            <option value="9" <?php if(@$users["P_STATUS"] == 9) { echo "selected";} ?>>ไม่ระบุ</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">การศึกษาผู้ปกครอง</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="default-select form-control" name="STADY_P">
+                            <option value="" disabled selected>กรุณาเลือก</option>
+                            <?php
+                                foreach ($degree as $degrees) 
+                                    {     
+                            ?>
+                            <option value="<?php echo @$degrees["ENTRYDEGREECODE"];?>"
+                                <?php if(@$degrees["ENTRYDEGREECODE"]==@$users["STADY_P"]) { echo "selected";} ?>>
+                                <?php echo $degrees["ENTRYDEGREENAME"];?></option>
+                            <?php
+                                    }
+                                ?>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">อาชีพของผู้ปกครอง</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="default-select form-control" name="JOB_P">
+                            <option value="" disabled selected>กรุณาเลือก</option>
+                            <?php
+                                foreach ($occup as $occups) 
+                                    {     
+                            ?>
+                            <option value="<?php echo @$occups["OCCUP_ID"];?>"
+                                <?php if(@$occups["OCCUP_ID"]==@$users["JOB_P"]) { echo "selected";} ?>>
+                                <?php echo $occups["OCCUP_NAME"];?></option>
+                            <?php
+                                    }
+                                ?>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">สถานที่ทำงาน</label>
+                        <input type="text" placeholder = "สถานที่ทำงานผู้ปกครอง" class="form-control" value="<?php echo $users['JOBNAME_P'] ?>" name="JOBNAME_P">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">จังหวัด</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="minimum-search-length" name="PROVINCE_PAR">
+                            <option value="">กรุณาเลือก</option>
+                            <?php
+                                     foreach ($province as $provinces) 
+                                     {                                
+                                    ?>
+                            <option value="<?php echo @$provinces["PROVINCE_ID"];?>"
+                                <?php if(@$provinces["PROVINCE_ID"]==@$users["PROVINCE_PAR"]) { echo "selected";} ?>>
+                                <?php echo @$provinces["PROVINCE_NAME_TH"];?></option>
+                            <?php
+                                        }
+                                    ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">อำเภอ</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="minimum-search-length" name="DISTRICT_PAR">
+                            <option value="">กรุณาเลือก</option>
+                            <?php
+                                        foreach ($district as $districts) 
+                                        {                                
+                                    ?>
+                            <option value="<?php echo @$districts["DISTRICT_ID"];?>"
+                                <?php if(@$districts["DISTRICT_ID"]==@$users["DISTRICT_PAR"]) { echo "selected";} ?>>
+                                <?php echo @$districts["DISTRICT_NAME_TH"].'  '.@$districts["PROVINCE_NAME_TH"];?>
+                            </option>
+                            <?php
+                                        }
+                                    ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">ตำบล</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="minimum-search-length" name="SUB_DISTRICT_PAR">
+                            <option value="">กรุณาเลือก</option>
+                            <?php
+                                        foreach ($subdistrict as $subdistricts) 
+                                        {
+                                        $subdistrictname = @$subdistricts["SUB_DISTRICT_NAME_TH"].'  '.@$subdistricts["DISTRICT_NAME_TH"].'   '.@$objResultt["PROVINCE_NAME_TH"];                         
+                                    ?>
+                            <option value="<?php echo @$subdistricts["SUB_DISTRICT_ID"];?>"
+                                <?php if(@$subdistricts["SUB_DISTRICT_ID"]==@$users["SUB_DISTRICT_PAR"]) { echo "selected";} ?>>
+                                <?php echo $subdistrictname;?></option>
+                            <?php
+                                        }
+                                    ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">รายได้ผู้ปกครอง</label>
+                        <!-- <select id="single-select"> -->
+                        <select class="default-select form-control" name="SALARYPM">
+                            <option value="">กรุณาเลือก</option>
+                            <?php
+                                        foreach ($revenu as $revenus) 
+                                        {
+                                        
+                                    ?>
+                            <option value="<?php echo @$revenu["REVENUE_ID"];?>"
+                                <?php if(@$revenus["REVENUE_ID"]==@$users["SALARYPM"]) { echo "selected";} ?>>
+                                <?php echo @$revenus["REVENUE_NAME2"];?></option>
+                            <?php
+                                        }
+                                    ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">เบอร์โทรติดต่อผู้ปกครอง</label>
+                        <input type="number" class="form-control" name="PARPHONE" value="<?php echo $users['PARPHONE'] ?>"
+                            name="PARPHONE">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                    
+                        <label class="form-label text-danger">กรณีผู้ปกครองเป็นบุคลากร มรย.</label>
+                        <input type="text" class="form-control" name="PA" value="<?php echo $users['PA'] ?>"
+                            name="PA" placeholder="หน่วยงาน/สังกัด">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label text-danger">กรณีผู้ปกครองเป็นบุคลากร มรย.</label>
+                        <input type="text" class="form-control" name="ID_PA" value="<?php echo $users['ID_PA'] ?>"
+                            name="ID_PA" placeholder="รหัสบุคลากร">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="filter cm-content-box box-primary">
+    <div class="content-title SlideToolHeader1">
+        <div class="cpa">
+            <h4 class="card-title">กรณีฉุกเฉินสามารถติดต่อเพื่อนบ้านหรือญาติ</h4>
+        </div>
+        <div class="tools">
+            <a href="javascript:void(0);" class="expand handle"><i class="fal fa-angle-down"></i></a>
+        </div>
+    </div>
+    <div class="cm-content-body form excerpt">
+        <div class="card-body">
+            <!-- <h6 class="mb-4 font-w500">Add New Custom Field:</h6> -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="mb-3">
+                        <label class="form-label">ชื่อ - นามสกุล</label>
+                        <input type="text" class="form-control" value="<?php echo $users['MORE_NAME'] ?>" name="MORE_NAME">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label">ที่อยู่ที่สามารถติดต่อ</label>
+                        <input type="text" class="form-control" value="<?php echo $users['MORE_ADDRESS'] ?>" name="MORE_ADDRESS">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="mb-3">
+                        <label class="form-label">เบอร์โทรศัพท์</label>
+                        <input type="nmber" class="form-control" value="<?php echo $users['MORE_TEL'] ?>" name="MORE_TEL">
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
 <div align="center">
     <button type="button" class="btn btn-primary btn-update ">ปรับปรุงข้อมูล</button>
     <button type="button" class="btn btn-primary btn-back">ย้อนกลับ</button>
 </div>
 
-<form class="profile-form" id="formdata">
+
     <!-- <div class="col-xl-12 col-lg-12">
         <div class="card profile-card m-b30">
             <div class="card-footer">
