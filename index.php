@@ -1228,7 +1228,7 @@ include ("include/connectdb.php");
 			//user=$(this).attr("id")
 			//alert(user)
 			$.ajax({
-				url:"./form/subform/viewresult.php",
+				url:"./form/subform/viewresult.php?v=1",
 				method:"post",
 				data:{id:user},
 				success:function(data){
