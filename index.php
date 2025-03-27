@@ -1,10 +1,10 @@
 <?php
 session_start();
-$part = $_SESSION['PATH'] = dirname(__FILE__);
+$part = $_SESSION['PATH'] = dirname(__FILE__).'\include\connectdb.php';
 $pages = @$_GET["page"];
 
 include ("setting/var.php");
-include ("include/connectdb.php");
+include ($part);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -755,7 +755,7 @@ include ("include/connectdb.php");
 							<li class="nav-item">
 								<div class="d-flex weather-detail">
 									<span><i class="las la-cloud"></i>21</span>
-									Medan, IDN
+									Medan, IDN <?php echo $part;?>
 								</div>
 							</li>
 							<li class="nav-item dropdown notification_dropdown">
@@ -970,6 +970,35 @@ include ("include/connectdb.php");
 						</ul>
 					</li>
 					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+							<i class="flaticon-381-notepad"></i>
+							<span class="nav-text">ตารางสอน</span>
+						</a>
+						<ul aria-expanded="false">
+							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">ระเบียนนักเรียน</a>
+								<ul aria-expanded="false">
+									<li><a href="?page=all">บันทึกระเบียนนักเรียน</a></li>
+									<li><a href="?page=profile">บันทึกระเบียนนักเรียน</a></li>
+									<li><a href="email-inbox.php">ตรวจสอบระเบียนนักเรียน</a></li>
+									<li><a href="email-read.php">บันทึกสถานะรายภาค</a></li>
+								</ul>
+							</li>
+							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">การตั้งค่า</a>
+								<ul aria-expanded="false">
+									<li><a href="?page=slot">คาบเรียน</a></li>
+									<li><a href="?page=gr-course">กลุ่มวิชา</a></li>
+									
+								</ul>
+							</li>
+							<!-- <li><a href="index.php">บันทึกระเบียนนักเรียน</a></li>
+							<li><a href="index-2.php">ตรวจสอบระเบียนนักเรียน</a></li>
+							<li><a href="my-wallet.php">บันทึกสถานะรายภาค</a></li>
+							<li><a href="invoices.php">Invoices</a></li>
+							<li><a href="cards-center.php">Cards Center</a></li>
+							<li><a href="transactions.php">Transactions</a></li>
+							<li><a href="transactions-details.php">Transactions Details</a></li> -->
+						</ul>
+					</li>
+					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-television"></i>
 							<span class="nav-text">Apps</span>
 						</a>
@@ -1070,9 +1099,10 @@ include ("include/connectdb.php");
 							<li><a href="form-wizard.php">Wizard</a></li>
 							<li><a href="form-ckeditor.php">CkEditor</a></li>
 							<li><a href="form-pickers.php">Pickers</a></li>
-							<li><a href="form-validation-jquery.php">Form Validate</a></li>
+							<li><a href="form-validation-jquery.php">การตั้งค่า</a></li>
 						</ul>
 					</li>
+					
 					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-network"></i>
 							<span class="nav-text">Table</span>
@@ -1117,7 +1147,7 @@ include ("include/connectdb.php");
 		<!--**********************************
             Content body start
         ***********************************-->
-		<div class="content-body default-height">
+		<div class="content-body default-height" id='reload'>
 			
 		<?php
 			
@@ -1132,9 +1162,13 @@ include ("include/connectdb.php");
 				case "t1" : include("view/viewstudent.php"); break;
 				// view
 				case "v-ent" : include("entrance/view/ent-all.php"); break;
-				//import
-				
 
+
+				//time modules
+				case "gr-course" : include("time/groupcourse.php"); break;
+				case "slot" : include("time/timeslot.php"); break;
+				
+				case "core" : include("time/module/core.php"); break;
 					
 				case "auth" : include("auth/chkuser.php"); break;
 				case "error" : include("page-error-503.html"); break;
@@ -1186,88 +1220,89 @@ include ("include/connectdb.php");
 <script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
 <script src="assets/js/dashboard/cms.js" type="text/javascript"></script>
 <script src="assets/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
-
-
 <script src="assets/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-
 <script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
 <script src="assets/js/plugins-init/sweetalert.init.js" type="text/javascript"></script>
-
 <script src="assets/vendor/datatables/js/jquery.dataTables.min.js?v=01" type="text/javascript"></script>
 <script src="assets/js/plugins-init/datatables.init.js" type="text/javascript"></script>
 <script src="assets/vendor/datatables/responsive/responsive.js" type="text/javascript"></script>
-
-
 <script src="assets/js/custom.js" type="text/javascript"></script>
 <script src="assets/js/deznav-init.js" type="text/javascript"></script>
 <script src="assets/js/demo.js" type="text/javascript"></script>
 <script src="assets/js/styleSwitcher.js" type="text/javascript"></script>
 <script src="assets/js/core.js" type="text/javascript"></script>
+
+
+
+
 <?php
 	include ("core/core.php");
+	
 ?>
+<script src="script/sc.js"></script>
 <script>
 	$(document).ready(function(){
-
-		$('.view_student').click(function(){
-			var uid=$(this).attr("id")
-			alert(uid)
-			$.ajax({
-				url:"view/viewstudent.php",
-				method:"post",
-				data:{id:uid},
-				success:function(data){
-					$('#data').html(data);
-					$('#dataModal').modal('show');	
-				}
-			});		
-		});
-
-		$('.view').click(function () {
-		var user = document.getElementById('studentid').value;
-			//user=$(this).attr("id")
-			//alert(user)
-			$.ajax({
-				url:"./form/subform/viewresult.php?v=1",
-				method:"post",
-				data:{id:user},
-				success:function(data){
-					$('#v_result').html(data);
-					document.getElementById("studentid").value = "";
-					$('.view').attr('disabled',true);
-				}
-			})	
-		})
-		
-		$('.view-ent').click(function () {
-		var user = document.getElementById('apptype').value;
-			$.ajax({
-				url:"./entrance/subform/ent-sub.php",
-				method:"post",
-				data:{id:user},
-				success:function(data){
-					$('#v_result').html(data);
-				//	document.getElementById("studentid").value = "";
-				//	$('.view').attr('disabled',true);
-				}
-			})	
-		})
-
-
-
-		$('#studentid').keyup(function() {
-			$('.view').attr('disabled',false);
-    	});
-		$('#apptype').change(function() {
-            // If a valid option is selected (not empty), enable the button
-            if ($(this).val() !== "") {
-                $('.view-ent').attr('disabled', false);
-            } else {
-                // If no option is selected, disable the button
-                $('.view-ent').attr('disabled', true);
+   
+    $('.view_student').click(function(){
+        var uid=$(this).attr("id")
+        alert(uid)
+        $.ajax({
+            url:"view/viewstudent.php",
+            method:"post",
+            data:{id:uid},
+            success:function(data){
+                $('#data').html(data);
+                $('#dataModal').modal('show');	
             }
-        });
-	});
+        });		
+    });
+
+    $('.view').click(function () {
+    var user = document.getElementById('studentid').value;
+        //user=$(this).attr("id")
+        //alert(user)
+        $.ajax({
+            url:"./form/subform/viewresult.php?v=1",
+            method:"post",
+            data:{id:user},
+            success:function(data){
+                $('#v_result').html(data);
+                document.getElementById("studentid").value = "";
+                $('.view').attr('disabled',true);
+            }
+        })	
+    })
+    
+    $('.view-ent').click(function () {
+    var user = document.getElementById('apptype').value;
+        $.ajax({
+            url:"./entrance/subform/ent-sub.php",
+            method:"post",
+            data:{id:user},
+            success:function(data){
+                $('#v_result').html(data);
+            //	document.getElementById("studentid").value = "";
+            //	$('.view').attr('disabled',true);
+            }
+        })	
+    })
+
+
+
+    $('#studentid').keyup(function() {
+        $('.view').attr('disabled',false);
+    });
+    $('#apptype').change(function() {
+        // If a valid option is selected (not empty), enable the button
+        if ($(this).val() !== "") {
+            $('.view-ent').attr('disabled', false);
+        } else {
+            // If no option is selected, disable the button
+            $('.view-ent').attr('disabled', true);
+        }
+    });
+});
+    
 </script>
 </body>
 

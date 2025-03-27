@@ -13,15 +13,13 @@
 
         //ตรวจสอบว่ามีข้อมูลหรือไม่
         if(empty($users)) {
-
-            
-
-            die('<div class="alert alert-danger solid alert-dismissible fade show">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                </button>
-                <strong>Error!</strong> ไม่พบรหัสนักเรียน.'.$id.'
-            </div>');
-           
+            die('
+                <div class="alert alert-danger solid alert-dismissible fade show">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                    </button>
+                    <strong>Error!</strong> ไม่พบรหัสนักเรียน.'.$id.'
+                </div>'
+            );
         }
 
 //เชื่อชาติ

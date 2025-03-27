@@ -17,7 +17,7 @@ oci_execute ($objParse_level,OCI_DEFAULT);
 $objResulte = oci_fetch_array($objParse_level,OCI_BOTH);
 $Numrow = oci_num_rows($objParse_level);
 
-if(@$users["status"] <> 'error') {
+if(!empty($users)) {
 
     if(@$users["FN"]=='N'){
         $sp = 'class="text-success fs-16 font-w500 text-end d-block"';
@@ -203,11 +203,11 @@ if(@$users["status"] <> 'error') {
     </div>
 <?php 
 } else { ?>
-    <!-- <div class="alert alert-danger solid alert-dismissible fade show">
+    <div class="alert alert-danger solid alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
         </button>
         <strong>Error!</strong> ไม่พบรหัสนักเรียน11aaa. <?php //echo @$studentcode?>
-    </div> -->
+    </div>
 <?php
 }
 ?>

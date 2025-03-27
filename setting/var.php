@@ -12,5 +12,11 @@
     } elseif($pages=='v-ent'){     
         $head = "งานรับสมัคร";
         $title = "รายชื่อผู้สมัคร";
+    } elseif($pages=='gr-course'){     
+        $head = "ตารางสอน";
+        $title = "กลุ่มวิชา";
+    }   elseif($pages=='slot'){     
+        $head = "ตารางสอน";
+        $title = "คาบเรียน";
     }
 ?>

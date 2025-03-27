@@ -6,7 +6,7 @@ $db = "(DESCRIPTION =
       (SERVICE_NAME =  YRU)
     )
   )";
-	$objConnect = oci_connect("eduservice","dv'[ibdki",$db, "AL32UTF8");
+	$objConnect = oci_connect("satityru","1475369",$db, "AL32UTF8");
 		if($objConnect)
 		{
 		//	echo "<font color='green'>Connected....<br></font>";
