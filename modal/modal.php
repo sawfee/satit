@@ -62,11 +62,11 @@
 
 
 <!-- Modal กลุ่มวิชา-->
-<div class="modal fade" id="groupCourse">
+<div class="modal fade" id="groupCourse" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">เพิ่มกลุ่มวิชา <?php echo $part ?></h5>
+                <h5 class="modal-title">เพิ่มกลุ่มวิชา</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"> -->
                 </button>
             </div>
@@ -91,8 +91,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary save-groupcourse">Save changes</button>
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary save-groupcourse">บันทึกข้อมูล</button>
             </div>
         </div>
     </div>
@@ -103,8 +103,6 @@
         $('.save-groupcourse').click(function () {
             var cid = document.getElementById('cid').value;
             var cname = document.getElementById('cname').value;
-
-            // Check if cname is empty
             if (cname === '') {
                 Swal.fire({
                     icon: 'error',
@@ -114,7 +112,6 @@
                 $('#cname').addClass('border-danger'); // Highlight the input field
                 return; // Stop further execution
             }
-
             Swal.fire({
                 title: 'ยืนยันบันทึกข้อมูล?',
                 icon: 'warning',
@@ -149,7 +146,15 @@
                                         title: response.message
                                     }).then(function () {
                                         $('#groupCourse').modal('toggle');
-                                        location.reload();
+                                        $.ajax({
+                                            url: "./time/groupcourse.php",
+                                            method: "post",
+                                            //	data:{id:uid},
+                                            success: function (data) {
+                                                $('#content').html(data);
+                                            }
+                                        });
+                                      //  location.reload();
                                     });
                                 } else {
                                     reject();

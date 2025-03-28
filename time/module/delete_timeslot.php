@@ -1,9 +1,7 @@
 <?php
 include('../../include/connectdb.php');
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
-
     // Construct the SQL DELETE statement
     $strSQL = "DELETE FROM GROUPCOURE WHERE GROUPID = :id";
     $objParse = oci_parse($objConnect, $strSQL);
