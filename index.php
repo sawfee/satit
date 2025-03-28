@@ -1,10 +1,10 @@
 <?php
 session_start();
-$part = $_SESSION['PATH'] = dirname(__FILE__);
+$part = $_SESSION['PATH'] = dirname(__FILE__).'\include\connectdb.php';
 $pages = @$_GET["page"];
 
 include ("setting/var.php");
-include ("include/connectdb.php");
+include ($part);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ include ("include/connectdb.php");
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta name="keywords"
+	<!-- <meta name="keywords"
 		content="PHP payment admin template, Bootstrap admin dashboard, payment system template, payment management UI, responsive admin template, PHP SaaS Admin Dashboard, Saas Dashboard Template, DexignZone, SSL Encryption, Mobile Optimization, e-commerce, UX/UI, Bootstrap 5, Admin Panel, HTML5, CSS3, Responsive Web App, User Interface Design, mobile commerce, dark layout, PWA (Progressive Web App), App Development, Product Showcase, Customizable, Modern Design, UI/UX Design">
 	<meta name="author" content="DexignZone">
 	<meta name="robots" content="index, follow">
@@ -34,23 +34,24 @@ include ("include/connectdb.php");
 	<meta name="twitter:description"
 		content="Discover Mophy, an advanced PHP payment admin dashboard crafted with Bootstrap for seamless payment management. This responsive and feature-rich admin panel simplifies payment processing, offering intuitive controls and insightful analytics. Empower your business with Mophy comprehensive tools and responsive design">
 	<meta name="twitter:image" content="https://mophy.dexignzone.com/php/social-image.png">
-	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:card" content="summary_large_image"> -->
 
 	<!-- MOBILE SPECIFIC -->
 
 
 	<!-- Favicon icon -->
 	<link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
-	<link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css" />
 
 	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" type="text/css" />
 	<link href="assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
-	<link href="assets/vendor/bootstrap-datepicker-master/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/vendor/bootstrap-datepicker-master/css/bootstrap-datepicker.min.css" rel="stylesheet"
+		type="text/css" />
 	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 	<link href="vendor/sweetalert2/sweetalert2.min.css" rel="stylesheet">
-	
+
 	<!-- Custom Stylesheet -->
 
 
@@ -83,9 +84,12 @@ include ("include/connectdb.php");
         ***********************************-->
 		<div class="nav-header">
 			<a href="index.php" class="brand-logo">
-				<img class="logo-abbr" src="assets/images/logo.png" alt="">
-				<img class="logo-compact" src="assets/images/logo-text.png" alt="">
-				<img class="brand-title" src="assets/images/logo-text.png" alt="">
+				<img class="logo-abbr" src="assets/images/satit-logo.png" alt="">
+				<!-- <img class="logo-abbr" src="assets/images/logo.png" alt=""> -->
+				<!-- <img class="logo-compact" src="assets/images/logo-text.png" alt="">
+				<img class="brand-title" src="assets/images/logo-text.png" alt=""> -->
+				<img class="logo-compact" src="assets/images/admission.png" alt="">
+				<img class="brand-title" src="assets/images/admission.png" alt="">
 			</a>
 
 			<div class="nav-control">
@@ -752,7 +756,7 @@ include ("include/connectdb.php");
 							<li class="nav-item">
 								<div class="d-flex weather-detail">
 									<span><i class="las la-cloud"></i>21</span>
-									Medan, IDN
+									Medan, IDN <?php echo $part;?>
 								</div>
 							</li>
 							<li class="nav-item dropdown notification_dropdown">
@@ -932,7 +936,7 @@ include ("include/connectdb.php");
 								<ul aria-expanded="false">
 									<li><a href="email-compose.php">รายชื่อนักเรียน</a></li>
 									<li><a href="email-inbox.php">รายชื่อนักเรียนพร้อมสถานะ</a></li>
-									
+
 								</ul>
 							</li>
 							<!-- <li><a href="index.php">บันทึกระเบียนนักเรียน</a></li>
@@ -964,6 +968,36 @@ include ("include/connectdb.php");
 							<li><a href="blog.php">Blog</a></li>
 							<li><a href="add-blog.php">Add Blog</a></li>
 							<li><a href="blog-category.php">Blog Category</a></li>
+						</ul>
+					</li>
+					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+							<i class="flaticon-381-notepad"></i>
+							<span class="nav-text">ตารางสอน</span>
+						</a>
+						<ul aria-expanded="false">
+							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">ระเบียนนักเรียน</a>
+								<ul aria-expanded="false">
+									<li><a href="?page=all">บันทึกระเบียนนักเรียน</a></li>
+									<li><a href="?page=profile">บันทึกระเบียนนักเรียน</a></li>
+									<li><a href="email-inbox.php">ตรวจสอบระเบียนนักเรียน</a></li>
+									<li><a href="email-read.php">บันทึกสถานะรายภาค</a></li>
+								</ul>
+							</li>
+							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">การตั้งค่า</a>
+								<ul aria-expanded="false">
+									<li><a href="?page=slot">คาบเรียน</a></li>
+									<li><a href="?page=gr-course">กลุ่มวิชา</a></li>
+									<li><a href="?page=structure">โครงสร้างรายวิชา</a></li>
+
+								</ul>
+							</li>
+							<!-- <li><a href="index.php">บันทึกระเบียนนักเรียน</a></li>
+							<li><a href="index-2.php">ตรวจสอบระเบียนนักเรียน</a></li>
+							<li><a href="my-wallet.php">บันทึกสถานะรายภาค</a></li>
+							<li><a href="invoices.php">Invoices</a></li>
+							<li><a href="cards-center.php">Cards Center</a></li>
+							<li><a href="transactions.php">Transactions</a></li>
+							<li><a href="transactions-details.php">Transactions Details</a></li> -->
 						</ul>
 					</li>
 					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -1067,9 +1101,10 @@ include ("include/connectdb.php");
 							<li><a href="form-wizard.php">Wizard</a></li>
 							<li><a href="form-ckeditor.php">CkEditor</a></li>
 							<li><a href="form-pickers.php">Pickers</a></li>
-							<li><a href="form-validation-jquery.php">Form Validate</a></li>
+							<li><a href="form-validation-jquery.php">การตั้งค่า</a></li>
 						</ul>
 					</li>
+
 					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-network"></i>
 							<span class="nav-text">Table</span>
@@ -1114,11 +1149,16 @@ include ("include/connectdb.php");
 		<!--**********************************
             Content body start
         ***********************************-->
+
 		<div class="content-body default-height">
-			
-		<?php
-			
-			
+			<div class="container-fluid">
+				<div class="page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $head;?></a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)"><?php echo $title;?></a></li>
+					</ol>
+				</div>
+				<?php		
 			switch($pages)
 			{
 				//form
@@ -1129,143 +1169,150 @@ include ("include/connectdb.php");
 				case "t1" : include("view/viewstudent.php"); break;
 				// view
 				case "v-ent" : include("entrance/view/ent-all.php"); break;
-				//import
-				
 
+
+				//time modules
+
+					//setting
+					case "gr-course" : include("time/groupcourse.php"); break;
+					case "slot" : include("time/timeslot.php"); break;
+					case "staff" : include("time/officer.php"); break;
+					case "structure" : include("time/classstructure.php"); break;
+				
+				case "core" : include("time/module/core.php"); break;
 					
 				case "auth" : include("auth/chkuser.php"); break;
 				case "error" : include("page-error-503.html"); break;
 				default: include('auth/out.php');
 			}	
-		?>	
-		</div>
-		<!--**********************************
+			?>
+			</div>
+
+
+
+
+
+			<!--**********************************
             Content body end
         ***********************************-->
 
 
-		<!--**********************************
+			<!--**********************************
             Footer start
         ***********************************-->
-		<div class="footer">
-			<div class="copyright">
-				<p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/"
-						target="_blank">DexignZone</a> 2024</p>
-			</div>
-		</div>
-		<!--**********************************
+			<!-- <div class="footer">
+				<div class="copyright">
+					<p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/"
+							target="_blank">DexignZone</a> 2024</p>
+				</div>
+			</div> -->
+			<!--**********************************
             Footer end
         ***********************************-->
 
-		<!--**********************************
+			<!--**********************************
            Support ticket button start
         ***********************************-->
 
-		<!--**********************************
+			<!--**********************************
            Support ticket button end
         ***********************************-->
 
 
-	</div>
-	<!--**********************************
+		</div>
+		<!--**********************************
         Main wrapper end
     ***********************************-->
 
-	<!--**********************************
+		<!--**********************************
         Scripts
     ***********************************-->
-	<!-- Required vendors -->
+		<!-- Required vendors -->
 
-<?php
+		<?php
 	include ("modal/modal.php");
 ?>
-<script src="assets/vendor/global/global.min.js" type="text/javascript"></script>
-<script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
-<script src="assets/js/dashboard/cms.js" type="text/javascript"></script>
-<script src="assets/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
-
-
-<script src="assets/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-
-<script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
-<script src="assets/js/plugins-init/sweetalert.init.js" type="text/javascript"></script>
-
-<script src="assets/vendor/datatables/js/jquery.dataTables.min.js?v=01" type="text/javascript"></script>
-<script src="assets/js/plugins-init/datatables.init.js" type="text/javascript"></script>
-<script src="assets/vendor/datatables/responsive/responsive.js" type="text/javascript"></script>
-
-
-<script src="assets/js/custom.js" type="text/javascript"></script>
-<script src="assets/js/deznav-init.js" type="text/javascript"></script>
-<script src="assets/js/demo.js" type="text/javascript"></script>
-<script src="assets/js/styleSwitcher.js" type="text/javascript"></script>
-<script src="assets/js/core.js" type="text/javascript"></script>
-<?php
-	include ("core/core.php");
-?>
-<script>
-	$(document).ready(function(){
-
-		$('.view_student').click(function(){
-			var uid=$(this).attr("id")
-			alert(uid)
-			$.ajax({
-				url:"view/viewstudent.php",
-				method:"post",
-				data:{id:uid},
-				success:function(data){
-					$('#data').html(data);
-					$('#dataModal').modal('show');	
-				}
-			});		
-		});
-
-		$('.view').click(function () {
-		var user = document.getElementById('studentid').value;
-			//user=$(this).attr("id")
-			//alert(user)
-			$.ajax({
-				url:"./form/subform/viewresult.php",
-				method:"post",
-				data:{id:user},
-				success:function(data){
-					$('#v_result').html(data);
-					document.getElementById("studentid").value = "";
-					$('.view').attr('disabled',true);
-				}
-			})	
-		})
+		<script src="assets/vendor/global/global.min.js" type="text/javascript"></script>
+		<script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+		<script src="assets/js/dashboard/cms.js" type="text/javascript"></script>
+		<script src="assets/vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
+		<script src="assets/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js" type="text/javascript">
+		</script>
+		<script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
+		<script src="assets/js/plugins-init/sweetalert.init.js" type="text/javascript"></script>
+		<script src="assets/vendor/datatables/js/jquery.dataTables.min.js?v=01" type="text/javascript"></script>
+		<script src="assets/js/plugins-init/datatables.init.js" type="text/javascript"></script>
+		<script src="assets/vendor/datatables/responsive/responsive.js" type="text/javascript"></script>
+		<script src="assets/js/custom.js" type="text/javascript"></script>
+		<script src="assets/js/deznav-init.js" type="text/javascript"></script>
+		<script src="assets/js/demo.js" type="text/javascript"></script>
+		<script src="assets/js/styleSwitcher.js" type="text/javascript"></script>
+		<script src="assets/js/core.js" type="text/javascript"></script>
 		
-		$('.view-ent').click(function () {
-		var user = document.getElementById('apptype').value;
-			$.ajax({
-				url:"./entrance/subform/ent-sub.php",
-				method:"post",
-				data:{id:user},
-				success:function(data){
-					$('#v_result').html(data);
-				//	document.getElementById("studentid").value = "";
-				//	$('.view').attr('disabled',true);
-				}
-			})	
-		})
+		<script src="assets/vendor/select2/js/select2.full.min.js" type="text/javascript"></script>
+		<script src="time/api/select.js?v=<?php echo date("Y-m-d h:i:sa");?>" type="text/javascript"></script>
+		<script src="assets/js/plugins-init/select2-init.js?v=<?php echo date("Y-m-d h:i:sa");?>" type="text/javascript">
+		
+		
+
+
+		<?php
+	include ("core/core.php");
+	
+?>
+		<script src="script/sc.js"></script>
+		<script>
+			$(document).ready(function () {
+				$('.view').click(function () {
+					var user = document.getElementById('studentid').value;
+					//user=$(this).attr("id")
+					//alert(user)
+					$.ajax({
+						url: "./form/subform/viewresult.php?v=1",
+						method: "post",
+						data: {
+							id: user
+						},
+						success: function (data) {
+							$('#v_result').html(data);
+							document.getElementById("studentid").value = "";
+							$('.view').attr('disabled', true);
+						}
+					})
+				})
+
+				$('.view-ent').click(function () {
+					var user = document.getElementById('apptype').value;
+					$.ajax({
+						url: "./entrance/subform/ent-sub.php",
+						method: "post",
+						data: {
+							id: user
+						},
+						success: function (data) {
+							$('#v_result').html(data);
+							//	document.getElementById("studentid").value = "";
+							//	$('.view').attr('disabled',true);
+						}
+					})
+				})
 
 
 
-		$('#studentid').keyup(function() {
-			$('.view').attr('disabled',false);
-    	});
-		$('#apptype').change(function() {
-            // If a valid option is selected (not empty), enable the button
-            if ($(this).val() !== "") {
-                $('.view-ent').attr('disabled', false);
-            } else {
-                // If no option is selected, disable the button
-                $('.view-ent').attr('disabled', true);
-            }
-        });
-	});
-</script>
+				$('#studentid').keyup(function () {
+					$('.view').attr('disabled', false);
+				});
+				$('#apptype').change(function () {
+					// If a valid option is selected (not empty), enable the button
+					if ($(this).val() !== "") {
+						$('.view-ent').attr('disabled', false);
+					} else {
+						// If no option is selected, disable the button
+						$('.view-ent').attr('disabled', true);
+					}
+				});
+			});
+		</script>
 </body>
 
 </html>
